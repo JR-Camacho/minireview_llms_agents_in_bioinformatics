@@ -1,0 +1,424 @@
+% ==============================================================================
+% SECTION 3: THEMATIC SYNTHESIS
+% ==============================================================================
+% Extensión: 2000–3000 palabras
+% Estructura: tabla de extracción (longtable), subsecciones por tema,
+% ecuaciones display (equation, align, cases), cajas destacadas (infobox, keypoint),
+% listings de código (Python, R, bash), tablas comparativas (tabularx)
+
+\section{Síntesis temática}\label{sec:synthesis}
+
+% --- RESUMEN GENERAL ---
+Los 15 estudios seleccionados fueron analizados y categorizados en cuatro ejes
+temáticos que abordan desde el diseño estructural hasta la validación científica
+de los sistemas. La \cref{subsec:architectures} examina las arquitecturas
+agénticas; la \cref{subsec:pipeline-automation} analiza la automatización de
+pipelines específicos, incluyendo genómica, scRNA-seq y farmacometría; la
+\cref{subsec:reproducibility} evalúa las estrategias de reproducibilidad y
+benchmarking; y finalmente, la \cref{subsec:governance} discute las limitaciones
+técnicas y los marcos de gobernanza.
+
+La \cref{tab:extraction} sintetiza las características operativas, aplicaciones
+clave y hallazgos principales de la evidencia analizada, sirviendo como base
+para la discusión técnica subsiguiente.
+
+\begin{enumerate}
+  \item Arquitecturas agénticas y patrones de orquestación.
+  \item Automatización de pipelines bioinformáticos específicos.
+  \item Reproducibilidad, benchmarking y evaluación comparativa.
+  \item Limitaciones técnicas, supervisión humana y gobernanza.
+\end{enumerate}
+
+
+% --- TABLA DE EXTRACCIÓN (OBLIGATORIA) ---
+% Longtable permite que la tabla continúe en varias páginas
+\begin{longtable}{p{3.0cm} p{2.8cm} p{2.7cm} p{3.5cm} p{2.6cm}}
+\caption{Tabla de extracción de datos de los estudios incluidos.}
+\label{tab:extraction}\\
+\toprule
+\textbf{Autor, año} & \textbf{Enfoque} & \textbf{Aplicación} &
+\textbf{Hallazgo clave} & \textbf{Limitación} \\
+\midrule\endfirsthead
+\multicolumn{5}{l}{\small\itshape Continuación de la página anterior}\\
+\toprule
+\textbf{Autor, año} & \textbf{Enfoque} & \textbf{Aplicación} &
+\textbf{Hallazgo clave} & \textbf{Limitación} \\
+\midrule\endhead
+\midrule\multicolumn{5}{r}{\small\itshape Continúa en la página siguiente}\\\endfoot
+\bottomrule\endlastfoot
+
+\textit{Artificial Intelligence in Transcriptomics}, 2026 &
+Modelo IURA &
+Transcriptómica &
+Transición hacia sistemas autónomos &
+Marco emergente \\
+\addlinespace
+\textit{BioMedAgent}, 2026 &
+Framework multi-agente &
+Workflows bioinformáticos &
+Selección autónoma y encadenamiento de tareas &
+Alto coste computacional \\
+\addlinespace
+\textit{PKGPT}, 2026 &
+Agente recursivo basado en LLMs &
+Modelado farmacocinético &
+Refinamiento iterativo mediante software externo &
+Dependencia de herramientas especializadas \\
+\addlinespace
+\textit{ChatSpatial}, 2026 &
+Orquestación basada en esquemas &
+Transcriptómica espacial &
+Reproducibilidad entre workflows R/Python &
+Complejidad de integración \\
+\addlinespace
+\textit{CellVoyager}, 2026 &
+Agente autónomo &
+Análisis de datos biológicos &
+Generación autónoma de hipótesis y análisis &
+Requiere supervisión humana \\
+\addlinespace
+\textit{Virtual Biotech}, 2026 &
+Sistema jerárquico multi-agente &
+Descubrimiento terapéutico &
+Orquestación científica de punta a punta &
+Infraestructura compleja \\
+\addlinespace
+\textit{Benchmarking LLM-based Agents}, 2026 &
+Framework de benchmarking &
+Ómicas de célula única &
+Métricas para colaboración entre agentes &
+Benchmarks limitados \\
+\addlinespace
+\textit{MCPmed}, 2026 &
+Arquitectura basada en MCP &
+Servicios web bioinformáticos &
+Interoperabilidad entre agentes y servicios &
+Propuesta temprana \\
+\addlinespace
+\textit{Reliable Data Science Copilots}, 2026 &
+Refinamiento iterativo &
+Programación científica &
+Necesidad de validación iterativa &
+Baja precisión inicial \\
+\addlinespace
+\textit{Metaviral Workflow Generation}, 2026 &
+Generación automática de pipelines &
+Virología computacional &
+Automatización de workflows multi-step &
+Riesgo de alucinaciones \\
+\addlinespace
+\textit{ggplotAgent}, 2026 &
+Agente auto-correctivo &
+Visualización científica &
+Corrección autónoma de errores &
+Alcance limitado \\
+\addlinespace
+\textit{Functional Genomics Assistant}, 2025 &
+Asistente basado en evidencia &
+Genómica funcional &
+Mejora trazabilidad y procedencia &
+Requiere fuentes curadas \\
+\addlinespace
+\textit{Multi-Agent AI Systems Review}, 2026 &
+Survey / taxonomía &
+Datos biológicos y clínicos &
+Tendencias en arquitecturas multi-agente &
+Evidencia mayormente teórica \\
+\addlinespace
+\textit{AI Agents for Biological Research}, 2026 &
+Framework taxonómico 5D &
+Automatización científica &
+Clasificación estructurada de sistemas agénticos &
+Validación experimental limitada \\
+\addlinespace
+\textit{Automated Protein Protocol Optimization}, 2026 &
+Automatización basada en LLMs &
+Protocolos de proteínas &
+Traducción de literatura a protocolos ejecutables &
+Desafíos de integración wet-lab \\
+\end{longtable}
+
+
+% --- SUBSECCIÓN 1 ---
+\subsection{Arquitecturas agénticas y patrones de orquestación}\label{subsec:architectures}
+
+Trabajos como \textit{BioMedAgent} y \textit{PKGPT} demostraron la integración
+de herramientas bioinformáticas externas dentro de arquitecturas capaces de
+ejecutar workflows complejos con mínima intervención humana. De forma similar,
+\textit{MCPmed} propuso mecanismos de interoperabilidad entre agentes y
+servicios bioinformáticos mediante protocolos estructurados, destacando la
+necesidad de infraestructuras estandarizadas para sistemas científicos
+autónomos.
+
+Asimismo, varios estudios identificaron patrones arquitectónicos comunes,
+incluyendo sistemas jerárquicos multi-agente, agentes recursivos de refinamiento
+y modelos orientados a la orquestación de tareas científicas complejas.
+
+Es importante precisar que esta caracterización arquitectónica no se basa
+únicamente en los artículos empíricos incluidos, sino también en una capa
+teórica de apoyo sobre diseño de agentes, memoria y uso de herramientas. Por
+ello, aunque los trabajos centrados exclusivamente en \textit{prompting} simple
+fueron excluidos del corpus principal, el nivel de LLM base se conserva aquí
+como referencia conceptual para mostrar el salto estructural hacia sistemas con
+planificación, estado y ejecución externa. En ese puente conceptual, la
+documentación oficial de LangChain resulta útil para describir de manera
+estandarizada cómo se articulan los componentes mínimos de un agente moderno,
+incluyendo el ciclo modelo-herramientas, la memoria operativa y la interacción
+con funciones externas~\citep{LangChainAgents2026,LangChainMemory2026,LangChainTools2026}.
+
+Esta evolución arquitectónica se puede categorizar en tres estadios
+(\cref{fig:agentic-levels}). Inicialmente, los sistemas operaban mediante
+\textit{prompting} directo (Nivel 1). La introducción de frameworks como
+LangChain permitió el desarrollo de agentes con capacidad de razonamiento y uso
+de herramientas (Nivel 2), donde el LLM actúa como un motor de decisiones para
+ejecutar software bioinformático. Finalmente, la frontera actual reside en
+sistemas multi-agente jerárquicos (Nivel 3), donde un supervisor coordina
+agentes especializados, permitiendo una validación cruzada y una autonomía
+superior en la ejecución de flujos de trabajo científicos complejos, tal como
+se propone en el marco de interoperabilidad de \textit{MCPmed}.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{llm_base.png}
+    \caption{LLM base}
+    \label{fig:llm-base}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{agente.png}
+    \caption{Agente con herramientas}
+    \label{fig:agent-tool-use}
+  \end{subfigure}
+
+  \vspace{0.8em}
+
+  \begin{subfigure}[t]{0.72\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{arquitectura_agentica.png}
+    \caption{Arquitectura agéntica}
+    \label{fig:agentic-architecture}
+  \end{subfigure}
+  \caption{Evolución conceptual desde modelos LLM usados mediante
+  \textit{prompting} directo hacia agentes con herramientas y arquitecturas
+  agénticas capaces de planificar, ejecutar, validar y refinar workflows
+  científicos.}
+  \label{fig:agentic-levels}
+\end{figure}
+
+% --- CAJA DE INFORMACIÓN (INFOBOX) ---
+\begin{infobox}[Recuadro 1 \textbar{} Concepto clave]
+  Un sistema agéntico combina razonamiento, planificación, memoria operativa,
+  uso de herramientas externas y ciclos de retroalimentación. Esta arquitectura
+  permite que el LLM deje de funcionar como un generador aislado de texto y pase
+  a actuar como coordinador de un workflow computacional verificable.
+  
+  En bioinformática, esta separación entre razonamiento y ejecución es crítica
+  porque permite delegar tareas técnicas a software especializado mientras se
+  mantiene una capa de supervisión y validación.
+\end{infobox}
+
+
+Ejemplo de workflow en Python:
+
+\begin{lstlisting}[style=python, caption={Workflow en Python con una libreria
+  de LLMs, como LangChain u OpenAI API.}, label=lst:python_example]
+from langchain.llms import OpenAI
+from langchain.agents import initialize_agent, Tool
+
+# Inicializar LLM
+llm = OpenAI(temperature=0.0, model="gpt-4")
+
+# Definir herramientas bioinformaticas
+tools = [
+    Tool(
+        name="PubMedSearch",
+        func=search_pubmed,
+        description="Buscar articulos relevantes en PubMed"
+    ),
+    Tool(
+        name="ParseSequence",
+        func=parse_fasta,
+        description="Procesar archivos de secuencias FASTA"
+    ),
+]
+
+# Crear agente
+agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
+result = agent.run("Buscar articulos sobre aplicaciones de CRISPR")
+\end{lstlisting}
+
+% --- CAJA DE PUNTO CLAVE (KEYPOINT) ---
+\begin{keypoint}[Hallazgo clave del eje 1]
+  La transición desde prompting directo hacia arquitecturas agénticas permite
+  que los LLMs coordinen herramientas externas, ejecuten procesos iterativos y
+  reduzcan la dependencia de supervisión humana constante.
+\end{keypoint}
+
+
+% --- SUBSECCIÓN 2 ---
+\subsection{Automatización de pipelines bioinformáticos específicos}\label{subsec:pipeline-automation}
+
+Una parte significativa de los estudios seleccionados se enfocó en la
+automatización de workflows computacionales en áreas como transcriptómica,
+\textit{single-cell omics}, modelado farmacocinético y generación automatizada
+de protocolos experimentales.
+
+Sistemas como \textit{CellVoyager} demostraron la capacidad de los agentes para
+generar hipótesis biológicas, ejecutar análisis y producir resultados de manera
+autónoma utilizando notebooks computacionales. Otros trabajos mostraron la
+generación automática de pipelines multi-step para virología y workflows de
+análisis ómicos, reduciendo significativamente la intervención manual en tareas
+repetitivas.
+
+Además, algunos estudios extendieron estas capacidades hacia entornos wet-lab,
+traduciendo información contenida en artículos científicos en protocolos
+experimentales ejecutables.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{workflow.png}
+  \caption{Representación conceptual de un workflow bioinformático automatizado
+  mediante sistemas agénticos.}
+  \label{fig:automated-workflow}
+\end{figure}
+
+Un aspecto crítico en esta automatización es la transición hacia workflows de
+ciclo cerrado (\textit{closed-loop}). A diferencia de los scripts estáticos,
+agentes como \textit{CellVoyager} operan en entornos de ejecución dinámica,
+como Jupyter Notebooks, donde el éxito de una tarea depende de la
+retroalimentación inmediata del intérprete de código. Esta capacidad de
+autocorrección permite que procesos complejos, como el análisis de
+\textit{single-cell omics}, se realicen sin supervisión constante, permitiendo
+al investigador humano enfocarse en la interpretación de alto nivel de las
+hipótesis generadas, mientras el sistema gestiona la infraestructura técnica y
+la interoperabilidad de las herramientas.
+
+% --- TABLA COMPARATIVA (TABULARX) ---
+\begin{table}[htbp]
+  \centering
+  \caption{Comparación de sistemas, herramientas o enfoques evaluados en los estudios.}
+  \label{tab:comparison}
+  \begin{tabularx}{\textwidth}{@{} l l Y Y @{}}
+    \toprule
+    \textbf{Sistema} & \textbf{Enfoque} & \textbf{Dominio} &
+    \textbf{Contribución principal} \\
+    \midrule
+    CellVoyager & Agente autónomo & \textit{Single-cell omics} &
+    Generación de hipótesis y ejecución de análisis en notebooks. \\
+    PKGPT & Agente recursivo & Farmacometría &
+    Refinamiento iterativo de modelos NONMEM mediante ejecución externa. \\
+    ChatSpatial & Orquestación por esquemas & Transcriptómica espacial &
+    Reproducibilidad entre entornos R y Python mediante herramientas validadas. \\
+    Alvessa & Asistente con \textit{grounding} & Genómica funcional &
+    Verificación a nivel de sentencia y trazabilidad de evidencia. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% --- SUBSECCIÓN 3 ---
+\subsection{Reproducibilidad, benchmarking y evaluación comparativa}\label{subsec:reproducibility}
+
+La reproducibilidad fue identificada como uno de los principales desafíos
+asociados al uso de sistemas basados en agentes dentro de bioinformática.
+Diversos estudios propusieron mecanismos para mejorar la trazabilidad,
+consistencia y verificabilidad de los workflows automatizados.
+
+\textit{ChatSpatial} introdujo estrategias de orquestación basadas en esquemas
+estructurados para asegurar consistencia entre entornos R y Python, mientras que
+otros trabajos propusieron asistentes basados en evidencia y mecanismos de
+\textit{grounding} para reducir alucinaciones y mejorar la procedencia de la
+información.
+
+De igual manera, algunos estudios desarrollaron frameworks de benchmarking
+orientados a evaluar colaboración entre agentes, síntesis automática de
+programas y calidad de ejecución en workflows bioinformáticos complejos.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{observabilidad.png}
+  \caption{Observabilidad de sistemas agénticos para auditoría de trazas,
+  grafos de ejecución y consumo de recursos en workflows automatizados.}
+  \label{fig:observability}
+\end{figure}
+
+Finalmente, la adopción de herramientas de observabilidad como LangSmith
+resulta indispensable para garantizar la robustez de estos sistemas. Estas
+plataformas permiten una auditoría granular de los grafos de ejecución,
+facilitando la identificación de cuellos de botella y errores de razonamiento
+en flujos multi-agente, lo que eleva el estándar de reproducibilidad al permitir
+que investigadores externos inspeccionen cada paso lógico y el consumo de
+recursos de los experimentos automatizados.
+
+
+% --- SUBSECCIÓN 4 ---
+\subsection{Limitaciones técnicas y consideraciones de gobernanza}\label{subsec:governance}
+
+A pesar del potencial observado en los sistemas basados en LLMs y agentes, la
+literatura revisada reportó múltiples limitaciones relacionadas con
+alucinaciones, coste computacional, dependencia de herramientas externas y
+problemas de reproducibilidad.
+
+Varios estudios señalaron que los LLMs presentan tasas de error significativas
+durante ejecuciones iniciales, haciendo necesaria la incorporación de mecanismos
+de validación iterativa, autocorrección y supervisión humana. Asimismo, el
+elevado consumo de recursos computacionales y coste asociado al uso continuo de
+modelos avanzados representa una barrera importante para su adopción
+generalizada.
+
+Finalmente, diferentes autores enfatizaron la ausencia de estándares claros para
+la gobernanza y evaluación de sistemas agénticos en entornos científicos,
+destacando la necesidad de desarrollar marcos normativos, estrategias de
+supervisión humana y protocolos de validación reproducibles para futuras
+implementaciones en bioinformática.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\textwidth]{riesgos.png}
+  \caption{La supervisión humana y la observabilidad son componentes críticos
+  del workflow agéntico: permiten intervenir en puntos de validación, auditar
+  decisiones intermedias y mantener el control experimental durante la
+  ejecución de pipelines bioinformáticos automatizados.}
+  \label{fig:risks-governance}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Limitaciones técnicas y estrategias de mitigación para sistemas
+  agénticos en bioinformática.}
+  \label{tab:limitations-governance}
+  \begin{tabularx}{\textwidth}{@{} l X X @{}}
+    \toprule
+    \textbf{Categoría} & \textbf{Limitación técnica} &
+    \textbf{Estrategia de mitigación} \\
+    \midrule
+    Fiabilidad &
+    Alucinaciones en rutas metabólicas o secuencias. &
+    \textit{Grounding} y verificación a nivel de sentencia (Alvessa). \\
+    Arquitectura &
+    Errores en cascada en flujos multi-agente. &
+    Implementación de \textit{unit testing} y observabilidad (LangSmith). \\
+    Coste &
+    Elevado consumo de tokens en ciclos recursivos. &
+    Uso de modelos \textit{small-language} (SLMs) para tareas de soporte. \\
+    Gobernanza &
+    Falta de trazabilidad en decisiones autónomas. &
+    Protocolos de \textit{human-in-the-loop} en puntos críticos de validación. \\
+    Interoperabilidad &
+    Incompatibilidad entre herramientas biológicas. &
+    Estandarización mediante el \textit{Model Context Protocol} (MCP). \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+La literatura sugiere que el despliegue de estos sistemas debe estar regido por
+un marco de gobernanza clínica y técnica. Un desafío crítico es el ``coste de la
+autonomía''; por ejemplo, sistemas que utilizan razonamiento recursivo pueden
+consumir entre 15 y 50 veces más tokens que un enfoque \textit{zero-shot}. Para
+mitigar esto, se propone la integración de capas de observabilidad que permitan
+monitorizar el presupuesto de tokens en tiempo real. Además, la gobernanza debe
+incluir protocolos de validación humana obligatoria antes de la transición de un
+flujo computacional (\textit{in silico}) a uno experimental (\textit{in vitro}),
+asegurando que la IA actúe como un copiloto de alta velocidad y no como un
+tomador de decisiones final sin supervisión.

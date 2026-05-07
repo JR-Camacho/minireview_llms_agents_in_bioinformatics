@@ -1,0 +1,155 @@
+% =============================================================================
+%  MINIREVIEW: LLM Applications in Bioinformatics
+%  MU Bioinformática · Universidad Nebrija · Iniciación en la Investigación
+%  Compilación:  pdflatex → bibtex → pdflatex → pdflatex  (4 pasos)
+%  En Overleaf:  seleccionar pdfLaTeX como compilador (menú → Settings).
+% =============================================================================
+
+\documentclass[12pt,a4paper]{article}
+
+% --- Codificación y tipografía -----------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+% \usepackage[spanish]{babel} % Opcional: activar si el idioma esta instalado en TinyTeX.
+
+% --- Página ------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{left=25mm, right=25mm, top=30mm, bottom=30mm}
+\usepackage{setspace}\onehalfspacing
+% \usepackage[left]{lineno}\linenumbers   % Descomentar para revisión (doble numeración)
+
+% --- Matemáticas -------------------------------------------------------------
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{group-separator={,}}
+
+% --- Figuras y subfiguras ----------------------------------------------------
+\usepackage{graphicx}\graphicspath{{../figures/}}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
+\usepackage{subcaption}
+
+% --- Tablas ------------------------------------------------------------------
+\usepackage{booktabs,array,multirow,longtable}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% --- Listas ------------------------------------------------------------------
+\usepackage{enumitem}\setlist{nosep}
+
+% --- Código fuente -----------------------------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle       = \small\ttfamily,
+  keywordstyle     = \bfseries\color{blue!70!black},
+  commentstyle     = \itshape\color{gray},
+  stringstyle      = \color{red!60!black},
+  numberstyle      = \tiny\color{gray},
+  numbers          = left,
+  numbersep        = 6pt,
+  frame            = single,
+  framerule        = 0.4pt,
+  rulecolor        = \color{black!30},
+  backgroundcolor  = \color{black!3},
+  breaklines       = true,
+  showstringspaces = false,
+  tabsize          = 4,
+  captionpos       = b,
+  aboveskip        = 10pt,
+  belowskip        = 6pt,
+}
+\lstdefinestyle{python}{language=Python,
+  morekeywords={as,with,True,False,None}}
+\lstdefinestyle{R}{language=R,
+  morekeywords={library,function,if,else,for,in,TRUE,FALSE,NULL}}
+\lstdefinestyle{bash}{language=bash,
+  morekeywords={snakemake,conda,pip}}
+
+% --- Cajas destacadas (tipo Box de Nature Reviews) ---------------------------
+\usepackage{tcolorbox}
+\newtcolorbox{infobox}[1][]{
+  colback=blue!3, colframe=blue!40!black,
+  fonttitle=\bfseries, coltitle=white, colbacktitle=blue!40!black,
+  boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, title={#1}}
+\newtcolorbox{keypoint}[1][]{
+  colback=yellow!5, colframe=orange!60!black,
+  fonttitle=\bfseries,
+  boxrule=0.4pt, arc=2pt, left=6pt, right=6pt, title={#1}}
+
+% --- TikZ (diagramas) -------------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc}
+
+% --- Hipervínculos -----------------------------------------------------------
+\usepackage[colorlinks,
+            linkcolor=black,
+            citecolor=blue!60!black,
+            urlcolor=blue!60!black]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% --- Bibliografía: BibTeX clásico con natbib ---------------------------------
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{unsrtnat}
+
+% --- Comandos personalizados -------------------------------------------------
+\newcommand{\gene}[1]{\textit{#1}}
+\newcommand{\tool}[1]{\textsc{\lowercase{#1}}}
+\newcommand{\pvalue}{\ensuremath{p}}
+\newcommand{\padj}{\ensuremath{p_{\text{adj}}}}
+\newcommand{\foldchange}{\ensuremath{\log_2\text{FC}}}
+
+% --- Metadatos ---------------------------------------------------------------
+\title{Sistemas basados en agentes y modelos de lenguaje (LLMs) para la
+automatización de workflows en bioinformática: arquitecturas, aplicaciones y
+desafíos}
+\author{Jose Camacho%
+  \thanks{Máster en Bioinformática, Universidad Nebrija.}}
+\date{06 Mayo 2026}
+
+% =============================================================================
+\begin{document}
+\maketitle
+
+% --- Resumen -----------------------------------------------------------------
+\begin{abstract}\noindent
+Los modelos de lenguaje de gran escala (LLMs) han abierto nuevas posibilidades
+para automatizar tareas complejas en bioinformática, pero su naturaleza
+probabilística limita su uso directo en workflows científicos que requieren
+trazabilidad, precisión y reproducibilidad. Esta mini-review analiza 15 estudios
+recientes sobre sistemas basados en agentes aplicados a transcriptómica,
+\textit{single-cell omics}, modelado farmacocinético, descubrimiento terapéutico,
+visualización científica y generación automatizada de protocolos. La evidencia
+revisada muestra una transición desde enfoques basados únicamente en
+\textit{prompting} hacia arquitecturas agénticas capaces de planificar tareas,
+invocar herramientas externas, ejecutar código, autocorregirse y coordinar
+múltiples agentes especializados. Los principales hallazgos señalan que la
+orquestación jerárquica, el \textit{grounding}, la observabilidad y los
+protocolos de interoperabilidad como el Model Context Protocol (MCP) son
+elementos centrales para escalar estos sistemas de forma robusta. No obstante,
+persisten desafíos importantes relacionados con alucinaciones, coste
+computacional, propagación de errores, ausencia de benchmarks estandarizados y
+gobernanza científica. En conjunto, los sistemas agénticos representan un cambio
+de paradigma: no solo automatizan tareas repetitivas, sino que pueden actuar
+como copilotos científicos capaces de ampliar el acceso a workflows
+bioinformáticos complejos bajo supervisión humana.
+\medskip\noindent
+\textbf{Palabras clave:} modelos de lenguaje de gran escala, sistemas
+agénticos, bioinformática, automatización, workflows, reproducibilidad,
+gobernanza
+\end{abstract}
+
+\newpage\tableofcontents\newpage
+
+% --- Secciones principales ---------------------------------------------------
+\input{sections/01_introduction}
+\input{sections/02_search_methodology}
+\input{sections/03_thematic_synthesis}
+\input{sections/04_discussion}
+\input{sections/05_conclusions}
+
+\newpage
+\nocite{*}
+\bibliography{references}
+
+\end{document}

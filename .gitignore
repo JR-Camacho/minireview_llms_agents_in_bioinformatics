@@ -3,3 +3,25 @@ venv/
 __pycache__/
 *.pyc
 .DS_Store
+minireview_example/
+
+# LaTeX artifacts (compilación)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*~
+*.pdf~
+
+# Generated PDF (si quieres ignorar, descomenta)
+# *.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

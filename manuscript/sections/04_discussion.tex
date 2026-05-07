@@ -1,0 +1,113 @@
+% ==============================================================================
+% SECTION 4: DISCUSSION
+% ==============================================================================
+
+\section{Discusión}\label{sec:discussion}
+
+\subsection{Hallazgos principales}\label{subsec:main-findings}
+
+Los hallazgos de esta revisión subrayan que los sistemas agénticos no son solo
+una mejora incremental, sino un cambio de paradigma en la bioinformática
+computacional. Se identificó que la autocorrección iterativa es el componente
+vital que permite la automatización de tareas que anteriormente requerían
+supervisión humana constante, como el modelado PopPK o la anotación de variantes
+genómicas.
+
+Un hallazgo fundamental es la eficacia de la orquestación jerárquica, donde un
+agente supervisor coordina a especialistas en herramientas, logrando una
+síntesis de resultados más coherente y menos propensa a alucinaciones. No
+obstante, los resultados también revelan que la calidad de los prompts de
+sistema y la estructura de las herramientas disponibles, es decir, herramientas
+agénticas o legibles por máquina, son los determinantes primarios del éxito del
+workflow.
+
+Este patrón valida la necesidad de protocolos como el \textit{Model Context
+Protocol} (MCP) para el futuro del área, ya que la interoperabilidad entre
+agentes, herramientas bioinformáticas y entornos de ejecución científica emerge
+como una condición central para escalar estos sistemas de forma reproducible.
+
+\subsection{Limitaciones}\label{subsec:discussion-limitations}
+
+A pesar del potencial disruptivo, la implementación de agentes en
+bioinformática enfrenta barreras técnicas críticas. El comportamiento no
+determinista de los modelos subyacentes introduce una variabilidad inaceptable
+en flujos de trabajo que requieren precisión absoluta, como el modelado PopPK.
+Asimismo, la propagación de errores en arquitecturas jerárquicas, donde una
+alucinación inicial contamina las etapas subsiguientes, subraya la inmadurez de
+los mecanismos de autocorrección actuales.
+
+La literatura también destaca la ausencia de estándares de diseño, lo que genera
+una fragmentación de herramientas que dificulta la interoperabilidad. Finalmente,
+la reproducibilidad sigue siendo un desafío abierto; la naturaleza de ``caja
+negra'' de los LLMs comerciales impide asegurar que un experimento automatizado
+produzca resultados idénticos en el tiempo, lo que requiere una transición hacia
+modelos locales y registros de observabilidad más estrictos.
+
+\begin{itemize}
+  \item \textbf{Comportamiento no determinista:} Los LLMs pueden generar
+  respuestas distintas ante el mismo prompt, lo que en bioinformática es
+  crítico. Un agente puede proponer un script de PyMOL funcional hoy y uno con
+  errores de sintaxis mañana. Esto obliga a implementar capas de validación de
+  esquemas, como propone \textit{ChatSpatial}, para forzar una estructura en la
+  salida.
+
+  \item \textbf{Propagación de errores:} En sistemas multi-agente, si el agente
+  investigador extrae un dato erróneo de PubMed, el agente programador escribirá
+  código basado en ese error y el agente analista generará conclusiones falsas.
+  Sin un monitor de errores, como LangSmith, este error se vuelve invisible
+  hasta el final del flujo.
+
+  \item \textbf{Falta de estándares de diseño:} Actualmente no existe un
+  lenguaje universal para que los agentes interactúen con herramientas
+  bioinformáticas. Cada desarrollador crea sus propias funciones de Python. Aquí
+  surge la necesidad del \textit{Model Context Protocol} (MCP) para estandarizar
+  cómo un agente invoca herramientas como BLAST o AutoDock.
+
+  \item \textbf{Dificultad en la reproducibilidad:} Debido a la actualización
+  constante de los modelos, por ejemplo GPT-4o o Gemini, un workflow agéntico
+  documentado en 2025 podría no funcionar igual en 2026, lo que desafía los
+  principios de la ciencia abierta y dificulta la revisión por pares.
+\end{itemize}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Impacto de las principales limitaciones de los sistemas agénticos en
+  bioinformática y estrategias de mitigación sugeridas.}
+  \label{tab:discussion-limitations}
+  \begin{tabularx}{\textwidth}{@{} l X X @{}}
+    \toprule
+    \textbf{Limitación} & \textbf{Impacto en bioinformática} &
+    \textbf{Mitigación sugerida} \\
+    \midrule
+    No determinismo &
+    Variabilidad en resultados de simulaciones. &
+    Fijación de temperatura ($T=0$) y \textit{prompt engineering} robusto. \\
+    Propagación &
+    Alucinaciones científicas verosímiles. &
+    Mecanismos de \textit{grounding} y validación cruzada entre agentes. \\
+    Falta de estándares &
+    Fragmentación de herramientas y silos. &
+    Adopción de protocolos de interoperabilidad, como MCPmed. \\
+    Reproducibilidad &
+    Imposibilidad de replicar pipelines exactos. &
+    Registro exhaustivo de versiones y trazas de ejecución, como LangSmith. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Vacíos en la literatura}\label{subsec:literature-gaps}
+
+La revisión identifica vacíos críticos que limitan la adopción masiva de estas
+tecnologías. En primer lugar, la falta de benchmarks estandarizados impide una
+comparación justa entre las crecientes arquitecturas agénticas, relegando la
+evaluación a éxitos anecdóticos en lugar de métricas universales.
+
+En segundo lugar, existe una carencia de evaluaciones comparativas rigurosas que
+analicen la relación entre el costo computacional y la ganancia en precisión
+científica, un factor determinante para la sostenibilidad en el entorno
+académico. Finalmente, la ausencia de estudios en entornos reales deja
+interrogantes abiertas sobre la capacidad de estos sistemas para manejar la
+ambigüedad y los requisitos de seguridad de los datos genómicos sensibles.
+
+Cerrar estos vacíos será esencial para transicionar de prototipos experimentales
+a sistemas de producción científica confiables.

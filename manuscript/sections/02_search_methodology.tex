@@ -1,0 +1,115 @@
+% ==============================================================================
+% SECTION 2: SEARCH METHODOLOGY
+% ==============================================================================
+% Extensión: 300–500 palabras
+% Estructura: pregunta PICO, bases de datos, ecuación de búsqueda,
+% criterios de inclusión/exclusión, diagrama PRISMA (TikZ)
+
+\section{Metodología de búsqueda}\label{sec:methods}
+
+\subsection{Pregunta de investigación}
+
+Se formuló una pregunta de investigación basada en el marco PICO:
+
+¿Qué tan efectivos son los sistemas basados en Large Language Models (LLMs) y 
+agentes en comparación con workflows tradicionales para la automatización de 
+pipelines bioinformáticos?
+
+\begin{table}[htbp]
+  \centering
+  \caption{Marco PICO de la pregunta de investigación.}\label{tab:pico}
+  \begin{tabular}{@{}p{3.2cm} p{9.2cm}@{}}
+    \toprule
+    \textbf{Componente} & \textbf{Descripción} \\
+    \midrule
+    \textbf{P: Población}    & Pipelines bioinformáticos, incluyendo análisis de RNA-seq, genómica y transcriptómica. \\
+    \textbf{I: Intervención} & Sistemas basados en Large Language Models (LLMs) y agentes. \\
+    \textbf{C: Comparación}   & Workflows tradicionales, tales como scripts manuales y pipelines estáticos. \\
+    \textbf{O: Resultado}      & Nivel de automatización, eficiencia, reproducibilidad y control del flujo de trabajo. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Bases de datos y estrategia de búsqueda}
+
+La búsqueda se realizó en PubMed, complementada con repositorios académicos 
+y plataformas de preprints, abarcando publicaciones entre 2020 y 2026. La 
+estrategia se ejecutó el 5 de mayo de 2026 mediante la siguiente ecuación:
+
+\begin{quote}\footnotesize\ttfamily\raggedright
+("large language models"[TIAB] OR LLM OR "AI agents") \\
+\hspace*{1em}AND ("bioinformatics" OR "RNA-seq" OR "genomics") \\
+\hspace*{1em}AND ("workflow" OR "pipeline" OR "automation" OR "agent" OR "orchestration")
+\end{quote}
+
+Se seleccionaron estudios enfocados en la orquestación de flujos de trabajo y 
+sistemas agénticos, integrando adicionalmente documentación técnica sobre 
+marcos de trabajo como LangChain y fundamentos de agentes para sustentar el 
+análisis arquitectónico.
+
+\subsection{Criterios de inclusión y exclusión}
+
+\paragraph{Criterios de inclusión}
+
+\begin{itemize}
+  \item Estudios que describieran arquitecturas explícitas basadas en agentes, incluyendo planificación, uso de herramientas externas o sistemas multi-agente.
+  \item Aplicaciones directas en bioinformática, tales como genómica, transcriptómica, proteómica o diseño automatizado de protocolos.
+  \item Artículos que analizaran desafíos técnicos asociados al uso de LLMs y agentes, incluyendo alucinaciones, reproducibilidad, coste computacional o control de ejecución.
+  \item Publicaciones que propusieran benchmarks, métricas o estrategias de evaluación para sistemas basados en agentes.
+\end{itemize}
+
+\paragraph{Criterios de exclusión}
+
+\begin{itemize}
+  \item Estudios enfocados exclusivamente en aplicaciones clínicas o diagnóstico por imagen sin relación con workflows bioinformáticos.
+  \item Trabajos que utilizaran LLMs únicamente mediante prompting simple, sin capacidades de planificación, uso de herramientas o ejecución autónoma.
+  \item Artículos centrados en aplicaciones médicas no relacionadas con bioinformática computacional, incluyendo encuestas de satisfacción de pacientes, medicina tradicional china o estudios clínicos sin componente de automatización de workflows.
+  \item Publicaciones sin descripción metodológica clara o sin relación directa con infraestructura computacional basada en agentes.
+\end{itemize}
+
+\subsection{Selección de estudios}
+
+La búsqueda inicial recuperó 40 artículos de PubMed. El cribado de títulos,
+resúmenes y conclusiones excluyó estudios sobre aplicaciones clínicas,
+\textit{prompting} simple o medicina no computacional. Tras aplicar los
+criterios de inclusión, se seleccionaron 15 artículos para la síntesis
+cualitativa (\cref{fig:prisma}).
+
+Para complementar el análisis de las arquitecturas implementadas en dichos
+artículos, se integró de forma dirigida la documentación técnica de LangChain,
+la cual sirvió como marco de referencia para fundamentar los componentes de
+diseño de agentes, memoria y uso de herramientas discutidos en esta
+revisión~\citep{LangChainAgents2026,LangChainMemory2026,LangChainTools2026}.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+      box/.style  = {rectangle, draw=black!60, fill=blue!5,
+                     text width=5cm, minimum height=1cm,
+                     align=center, font=\small},
+      arrow/.style = {-Stealth, thick, black!60},
+      excl/.style  = {rectangle, draw=black!30, fill=red!5,
+                      text width=3.5cm, minimum height=0.8cm,
+                      align=center, font=\footnotesize}
+    ]
+    \node[box] (id)     {Registros identificados\\($n = 40$) };
+    \node[box, below=0.6cm of id]  (dedup)  {Tras eliminar duplicados\\($n = 40$) };
+    \node[box, below=0.6cm of dedup](screen) {Cribado por título/resumen\\($n = 40$) };
+    \node[box, below=0.6cm of screen](full)  {Texto completo evaluado\\($n = 15$) };
+    \node[box, below=0.6cm of full] (incl)   {Incluidos en la síntesis\\($n = 15$) };
+
+    \node[excl, right=1.2cm of dedup]  (e1) {Duplicados\\($n = 0$) };
+    \node[excl, right=1.2cm of screen] (e2) {Excluidos\\($n = 25$) };
+    \node[excl, right=1.2cm of full]   (e3) {Excluidos\\($n = 0$) };
+
+    \draw[arrow] (id)     -- (dedup);
+    \draw[arrow] (dedup)  -- (screen);
+    \draw[arrow] (screen) -- (full);
+    \draw[arrow] (full)   -- (incl);
+    \draw[arrow] (dedup.east)  -- (e1.west);
+    \draw[arrow] (screen.east) -- (e2.west);
+    \draw[arrow] (full.east)   -- (e3.west);
+  \end{tikzpicture}
+  \caption{Diagrama de flujo PRISMA del proceso de selección de estudios.}
+  \label{fig:prisma}
+\end{figure}
