@@ -10,16 +10,16 @@ Los hallazgos de esta revisión subrayan que los sistemas agénticos no son solo
 una mejora incremental, sino un cambio de paradigma en la bioinformática
 computacional. Se identificó que la autocorrección iterativa es el componente
 vital que permite la automatización de tareas que anteriormente requerían
-supervisión humana constante, como el modelado PopPK o la anotación de variantes
-genómicas.
+supervisión humana constante, como el modelado PopPK o ciertos análisis de
+\textit{single-cell omics}, aunque la validación experta continúa siendo
+necesaria en etapas críticas.
 
-Un hallazgo fundamental es la eficacia de la orquestación jerárquica, donde un
-agente supervisor coordina a especialistas en herramientas, logrando una
-síntesis de resultados más coherente y menos propensa a alucinaciones. No
-obstante, los resultados también revelan que la calidad de los prompts de
-sistema y la estructura de las herramientas disponibles, es decir, herramientas
-agénticas o legibles por máquina, son los determinantes primarios del éxito del
-workflow.
+Un hallazgo fundamental es el valor de la orquestación jerárquica, donde un
+agente supervisor coordina a especialistas en herramientas y distribuye tareas
+analíticas de forma más estructurada. No obstante, los resultados también
+revelan que la calidad de los prompts de sistema y la estructura de las
+herramientas disponibles, es decir, herramientas agénticas o legibles por
+máquina, son determinantes centrales del éxito del workflow.
 
 Este patrón valida la necesidad de protocolos como el \textit{Model Context
 Protocol} (MCP) para el futuro del área, ya que la interoperabilidad entre
@@ -54,19 +54,21 @@ modelos locales y registros de observabilidad más estrictos.
   \item \textbf{Propagación de errores:} En sistemas multi-agente, si el agente
   investigador extrae un dato erróneo de PubMed, el agente programador escribirá
   código basado en ese error y el agente analista generará conclusiones falsas.
-  Sin un monitor de errores, como LangSmith, este error se vuelve invisible
-  hasta el final del flujo.
+  Sin un monitor de errores, como
+  LangSmith~\citep{LangSmithObservability2026,LangSmithConcepts2026}, este
+  error puede permanecer invisible hasta el final del flujo.
 
   \item \textbf{Falta de estándares de diseño:} Actualmente no existe un
   lenguaje universal para que los agentes interactúen con herramientas
   bioinformáticas. Cada desarrollador crea sus propias funciones de Python. Aquí
-  surge la necesidad del \textit{Model Context Protocol} (MCP) para estandarizar
-  cómo un agente invoca herramientas como BLAST o AutoDock.
+  surge la necesidad del \textit{Model Context Protocol}
+  (MCP)~\citep{41729821} para estandarizar la invocación de herramientas
+  bioinformáticas externas por parte de agentes.
 
   \item \textbf{Dificultad en la reproducibilidad:} Debido a la actualización
-  constante de los modelos, por ejemplo GPT-4o o Gemini, un workflow agéntico
-  documentado en 2025 podría no funcionar igual en 2026, lo que desafía los
-  principios de la ciencia abierta y dificulta la revisión por pares.
+  constante de modelos comerciales, un workflow agéntico documentado en 2025
+  podría no funcionar igual en 2026, lo que desafía los principios de la ciencia
+  abierta y dificulta la revisión por pares.
 \end{itemize}
 
 \begin{table}[htbp]
@@ -87,10 +89,12 @@ modelos locales y registros de observabilidad más estrictos.
     Mecanismos de \textit{grounding} y validación cruzada entre agentes. \\
     Falta de estándares &
     Fragmentación de herramientas y silos. &
-    Adopción de protocolos de interoperabilidad, como MCPmed. \\
+    Adopción de protocolos de interoperabilidad, como
+    MCPmed~\citealp{41729821}. \\
     Reproducibilidad &
     Imposibilidad de replicar pipelines exactos. &
-    Registro exhaustivo de versiones y trazas de ejecución, como LangSmith. \\
+    Registro exhaustivo de versiones y trazas de ejecución, como
+    LangSmith~\citealp{LangSmithObservability2026}. \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -105,9 +109,9 @@ evaluación a éxitos anecdóticos en lugar de métricas universales.
 En segundo lugar, existe una carencia de evaluaciones comparativas rigurosas que
 analicen la relación entre el costo computacional y la ganancia en precisión
 científica, un factor determinante para la sostenibilidad en el entorno
-académico. Finalmente, la ausencia de estudios en entornos reales deja
-interrogantes abiertas sobre la capacidad de estos sistemas para manejar la
-ambigüedad y los requisitos de seguridad de los datos genómicos sensibles.
+académico. Finalmente, la ausencia de estudios en entornos reales deja abierta
+la capacidad de estos sistemas para manejar ambigüedad y requisitos de
+seguridad sobre datos genómicos sensibles.
 
-Cerrar estos vacíos será esencial para transicionar de prototipos experimentales
-a sistemas de producción científica confiables.
+Cerrar estos vacíos será clave para pasar de prototipos experimentales a
+sistemas de producción científica confiables.

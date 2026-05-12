@@ -32,6 +32,7 @@
 
 % --- Tablas ------------------------------------------------------------------
 \usepackage{booktabs,array,multirow,longtable}
+\usepackage{float}
 \usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
@@ -98,6 +99,7 @@
 \newcommand{\pvalue}{\ensuremath{p}}
 \newcommand{\padj}{\ensuremath{p_{\text{adj}}}}
 \newcommand{\foldchange}{\ensuremath{\log_2\text{FC}}}
+\renewcommand{\abstractname}{Resumen}
 
 % --- Metadatos ---------------------------------------------------------------
 \title{Sistemas basados en agentes y modelos de lenguaje (LLMs) para la
@@ -117,20 +119,20 @@ Los modelos de lenguaje de gran escala (LLMs) han abierto nuevas posibilidades
 para automatizar tareas complejas en bioinformática, pero su naturaleza
 probabilística limita su uso directo en workflows científicos que requieren
 trazabilidad, precisión y reproducibilidad. Esta mini-review analiza 15 estudios
-recientes sobre sistemas basados en agentes aplicados a transcriptómica,
+sobre sistemas basados en agentes aplicados a transcriptómica,
 \textit{single-cell omics}, modelado farmacocinético, descubrimiento terapéutico,
 visualización científica y generación automatizada de protocolos. La evidencia
-revisada muestra una transición desde enfoques basados únicamente en
-\textit{prompting} hacia arquitecturas agénticas capaces de planificar tareas,
-invocar herramientas externas, ejecutar código, autocorregirse y coordinar
-múltiples agentes especializados. Los principales hallazgos señalan que la
+muestra una transición desde enfoques basados en \textit{prompting} hacia
+arquitecturas agénticas capaces de planificar tareas, invocar herramientas
+externas, ejecutar código, autocorregirse y coordinar agentes especializados.
+Los principales hallazgos señalan que la
 orquestación jerárquica, el \textit{grounding}, la observabilidad y los
 protocolos de interoperabilidad como el Model Context Protocol (MCP) son
-elementos centrales para escalar estos sistemas de forma robusta. No obstante,
-persisten desafíos importantes relacionados con alucinaciones, coste
-computacional, propagación de errores, ausencia de benchmarks estandarizados y
-gobernanza científica. En conjunto, los sistemas agénticos representan un cambio
-de paradigma: no solo automatizan tareas repetitivas, sino que pueden actuar
+elementos centrales para escalar estos sistemas. Persisten desafíos
+relacionados con alucinaciones, coste computacional, propagación de errores,
+ausencia de benchmarks estandarizados y gobernanza científica. En conjunto, los
+sistemas agénticos representan un cambio
+de paradigma: no solo automatizan tareas repetitivas, sino que pueden funcionar
 como copilotos científicos capaces de ampliar el acceso a workflows
 bioinformáticos complejos bajo supervisión humana.
 \medskip\noindent

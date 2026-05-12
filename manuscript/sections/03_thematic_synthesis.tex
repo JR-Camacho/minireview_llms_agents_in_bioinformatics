@@ -63,43 +63,43 @@ Alto coste computacional \\
 Agente recursivo basado en LLMs &
 Modelado farmacocinético &
 Refinamiento iterativo mediante software externo &
-Dependencia de herramientas especializadas \\
+Requiere supervisión experta para plausibilidad e interpretabilidad \\
 \addlinespace
 \textit{ChatSpatial}, 2026 &
 Orquestación basada en esquemas &
 Transcriptómica espacial &
 Reproducibilidad entre workflows R/Python &
-Complejidad de integración \\
+Preprint; validación todavía emergente \\
 \addlinespace
 \textit{CellVoyager}, 2026 &
 Agente autónomo &
 Análisis de datos biológicos &
-Generación autónoma de hipótesis y análisis &
-Requiere supervisión humana \\
+Ejecución autónoma de análisis y hallazgos en notebooks &
+La interpretación final sigue requiriendo revisión experta \\
 \addlinespace
 \textit{Virtual Biotech}, 2026 &
 Sistema jerárquico multi-agente &
 Descubrimiento terapéutico &
 Orquestación científica de punta a punta &
-Infraestructura compleja \\
+Preprint; evidencia aún preliminar \\
 \addlinespace
 \textit{Benchmarking LLM-based Agents}, 2026 &
 Framework de benchmarking &
 Ómicas de célula única &
-Métricas para colaboración entre agentes &
+Evaluación de capacidades agénticas en análisis ómicos &
 Benchmarks limitados \\
 \addlinespace
 \textit{MCPmed}, 2026 &
 Arquitectura basada en MCP &
 Servicios web bioinformáticos &
-Interoperabilidad entre agentes y servicios &
+Interoperabilidad entre agentes y servicios web bioinformáticos &
 Propuesta temprana \\
 \addlinespace
 \textit{Reliable Data Science Copilots}, 2026 &
 Refinamiento iterativo &
 Programación científica &
 Necesidad de validación iterativa &
-Baja precisión inicial \\
+Baja precisión inicial sin refinamiento \\
 \addlinespace
 \textit{Metaviral Workflow Generation}, 2026 &
 Generación automática de pipelines &
@@ -142,13 +142,15 @@ Desafíos de integración wet-lab \\
 % --- SUBSECCIÓN 1 ---
 \subsection{Arquitecturas agénticas y patrones de orquestación}\label{subsec:architectures}
 
-Trabajos como \textit{BioMedAgent} y \textit{PKGPT} demostraron la integración
-de herramientas bioinformáticas externas dentro de arquitecturas capaces de
-ejecutar workflows complejos con mínima intervención humana. De forma similar,
-\textit{MCPmed} propuso mecanismos de interoperabilidad entre agentes y
-servicios bioinformáticos mediante protocolos estructurados, destacando la
-necesidad de infraestructuras estandarizadas para sistemas científicos
-autónomos.
+Trabajos como \textit{BioMedAgent}~\citep{41912700} y
+\textit{PKGPT}~\citep{42076151} mostraron que es posible
+integrar herramientas bioinformáticas externas dentro de arquitecturas capaces
+de ejecutar workflows complejos y refinar sus resultados de manera iterativa,
+aunque todavía bajo supervisión humana en tareas de alta exigencia técnica. De
+forma similar, \textit{MCPmed}~\citep{41729821} propuso mecanismos de
+interoperabilidad entre agentes y servicios web bioinformáticos mediante
+protocolos estructurados, destacando la necesidad de infraestructuras
+estandarizadas para sistemas científicos autónomos.
 
 Asimismo, varios estudios identificaron patrones arquitectónicos comunes,
 incluyendo sistemas jerárquicos multi-agente, agentes recursivos de refinamiento
@@ -171,11 +173,12 @@ Esta evolución arquitectónica se puede categorizar en tres estadios
 \textit{prompting} directo (Nivel 1). La introducción de frameworks como
 LangChain permitió el desarrollo de agentes con capacidad de razonamiento y uso
 de herramientas (Nivel 2), donde el LLM actúa como un motor de decisiones para
-ejecutar software bioinformático. Finalmente, la frontera actual reside en
-sistemas multi-agente jerárquicos (Nivel 3), donde un supervisor coordina
-agentes especializados, permitiendo una validación cruzada y una autonomía
-superior en la ejecución de flujos de trabajo científicos complejos, tal como
-se propone en el marco de interoperabilidad de \textit{MCPmed}.
+ejecutar software bioinformático. Finalmente, la frontera actual se desplaza
+hacia sistemas multi-agente jerárquicos (Nivel 3), donde un supervisor
+coordina agentes especializados y distribuye subtareas científicas complejas,
+como se observa en propuestas recientes como \textit{Virtual
+Biotech}~\citep{41808990} \textit{(preprint)} y en marcos de interoperabilidad
+como \textit{MCPmed}~\citep{41729821}.
 
 \begin{figure}[htbp]
   \centering
@@ -253,7 +256,8 @@ result = agent.run("Buscar articulos sobre aplicaciones de CRISPR")
 \begin{keypoint}[Hallazgo clave del eje 1]
   La transición desde prompting directo hacia arquitecturas agénticas permite
   que los LLMs coordinen herramientas externas, ejecuten procesos iterativos y
-  reduzcan la dependencia de supervisión humana constante.
+  estructuren mejor el workflow científico, aunque la validación humana sigue
+  siendo necesaria en tareas de alta sensibilidad biológica o clínica.
 \end{keypoint}
 
 
@@ -265,12 +269,13 @@ automatización de workflows computacionales en áreas como transcriptómica,
 \textit{single-cell omics}, modelado farmacocinético y generación automatizada
 de protocolos experimentales.
 
-Sistemas como \textit{CellVoyager} demostraron la capacidad de los agentes para
-generar hipótesis biológicas, ejecutar análisis y producir resultados de manera
-autónoma utilizando notebooks computacionales. Otros trabajos mostraron la
-generación automática de pipelines multi-step para virología y workflows de
-análisis ómicos, reduciendo significativamente la intervención manual en tareas
-repetitivas.
+Sistemas como \textit{CellVoyager}~\citep{41845065} demostraron la capacidad de
+los agentes para proponer análisis, ejecutarlos y producir resultados de forma
+autónoma dentro de notebooks computacionales, especialmente en escenarios de
+\textit{single-cell omics}. Otros trabajos mostraron la generación automática
+de pipelines multi-step para virología y workflows de análisis ómicos,
+reduciendo la intervención manual en tareas repetitivas y de ensamblaje
+técnico~\citep{41523654}.
 
 Además, algunos estudios extendieron estas capacidades hacia entornos wet-lab,
 traduciendo información contenida en artículos científicos en protocolos
@@ -286,18 +291,18 @@ experimentales ejecutables.
 
 Un aspecto crítico en esta automatización es la transición hacia workflows de
 ciclo cerrado (\textit{closed-loop}). A diferencia de los scripts estáticos,
-agentes como \textit{CellVoyager} operan en entornos de ejecución dinámica,
+agentes como \textit{CellVoyager}~\citep{41845065} operan en entornos de ejecución dinámica,
 como Jupyter Notebooks, donde el éxito de una tarea depende de la
 retroalimentación inmediata del intérprete de código. Esta capacidad de
-autocorrección permite que procesos complejos, como el análisis de
-\textit{single-cell omics}, se realicen sin supervisión constante, permitiendo
-al investigador humano enfocarse en la interpretación de alto nivel de las
-hipótesis generadas, mientras el sistema gestiona la infraestructura técnica y
-la interoperabilidad de las herramientas.
+autocorrección amplía el alcance de procesos complejos, como el análisis de
+\textit{single-cell omics}, y desplaza parte de la carga técnica desde el
+investigador hacia el sistema, aunque no elimina por completo la necesidad de
+revisión experta sobre la interpretación final.
 
 % --- TABLA COMPARATIVA (TABULARX) ---
-\begin{table}[htbp]
+\begin{table}[H]
   \centering
+  \small
   \caption{Comparación de sistemas, herramientas o enfoques evaluados en los estudios.}
   \label{tab:comparison}
   \begin{tabularx}{\textwidth}{@{} l l Y Y @{}}
@@ -306,11 +311,11 @@ la interoperabilidad de las herramientas.
     \textbf{Contribución principal} \\
     \midrule
     CellVoyager & Agente autónomo & \textit{Single-cell omics} &
-    Generación de hipótesis y ejecución de análisis en notebooks. \\
+    Ejecución autónoma de análisis y generación de hallazgos en notebooks. \\
     PKGPT & Agente recursivo & Farmacometría &
-    Refinamiento iterativo de modelos NONMEM mediante ejecución externa. \\
+    Refinamiento iterativo de modelos NONMEM mediante ejecución externa y evaluación repetida. \\
     ChatSpatial & Orquestación por esquemas & Transcriptómica espacial &
-    Reproducibilidad entre entornos R y Python mediante herramientas validadas. \\
+    Reproducibilidad de workflows entre entornos R y Python mediante esquemas validados. \\
     Alvessa & Asistente con \textit{grounding} & Genómica funcional &
     Verificación a nivel de sentencia y trazabilidad de evidencia. \\
     \bottomrule
@@ -325,26 +330,28 @@ asociados al uso de sistemas basados en agentes dentro de bioinformática.
 Diversos estudios propusieron mecanismos para mejorar la trazabilidad,
 consistencia y verificabilidad de los workflows automatizados.
 
-\textit{ChatSpatial} introdujo estrategias de orquestación basadas en esquemas
-estructurados para asegurar consistencia entre entornos R y Python, mientras que
-otros trabajos propusieron asistentes basados en evidencia y mecanismos de
+\textit{ChatSpatial}~\citep{41890081} introdujo estrategias de orquestación basadas en esquemas
+estructurados para mejorar la consistencia entre entornos R y Python, mientras
+que otros trabajos propusieron asistentes basados en evidencia y mecanismos de
 \textit{grounding} para reducir alucinaciones y mejorar la procedencia de la
-información.
+información~\citep{41502944}.
 
 De igual manera, algunos estudios desarrollaron frameworks de benchmarking
-orientados a evaluar colaboración entre agentes, síntesis automática de
-programas y calidad de ejecución en workflows bioinformáticos complejos.
+orientados a evaluar la calidad de generación de código, la ejecución de tareas
+analíticas y la robustez de distintas capacidades agénticas en workflows
+bioinformáticos complejos.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
   \centering
-  \includegraphics[width=0.88\textwidth]{observabilidad.png}
+  \includegraphics[width=0.80\textwidth]{observabilidad.png}
   \caption{Observabilidad de sistemas agénticos para auditoría de trazas,
   grafos de ejecución y consumo de recursos en workflows automatizados.}
   \label{fig:observability}
 \end{figure}
 
-Finalmente, la adopción de herramientas de observabilidad como LangSmith
-resulta indispensable para garantizar la robustez de estos sistemas. Estas
+Finalmente, la adopción de herramientas de observabilidad como
+LangSmith~\citep{LangSmithObservability2026,LangSmithConcepts2026} puede ser
+especialmente útil para fortalecer la robustez de estos sistemas. Estas
 plataformas permiten una auditoría granular de los grafos de ejecución,
 facilitando la identificación de cuellos de botella y errores de razonamiento
 en flujos multi-agente, lo que eleva el estándar de reproducibilidad al permitir
@@ -395,10 +402,12 @@ implementaciones en bioinformática.
     \midrule
     Fiabilidad &
     Alucinaciones en rutas metabólicas o secuencias. &
-    \textit{Grounding} y verificación a nivel de sentencia (Alvessa). \\
+    \textit{Grounding} y verificación a nivel de sentencia
+    (\textit{Alvessa}~\citealp{41502944}). \\
     Arquitectura &
     Errores en cascada en flujos multi-agente. &
-    Implementación de \textit{unit testing} y observabilidad (LangSmith). \\
+    Implementación de \textit{unit testing} y observabilidad
+    (LangSmith~\citealp{LangSmithObservability2026}). \\
     Coste &
     Elevado consumo de tokens en ciclos recursivos. &
     Uso de modelos \textit{small-language} (SLMs) para tareas de soporte. \\
@@ -407,7 +416,8 @@ implementaciones en bioinformática.
     Protocolos de \textit{human-in-the-loop} en puntos críticos de validación. \\
     Interoperabilidad &
     Incompatibilidad entre herramientas biológicas. &
-    Estandarización mediante el \textit{Model Context Protocol} (MCP). \\
+    Estandarización mediante el \textit{Model Context Protocol}
+    (MCP~\citealp{41729821}). \\
     \bottomrule
   \end{tabularx}
 \end{table}
